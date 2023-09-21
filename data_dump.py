@@ -1,23 +1,23 @@
 import pymongo
 import pandas as pd
 import json
+# Provide the mongodb localhost url to connect python to mongodb.
+client = pymongo.MongoClient("mongodb+srv://shashikumarr2106:8861250561@cluster0.tw9nr0b.mongodb.net/?retryWrites=true&w=majority")
 
-data_file_path = "aps_failure_training_set1.csv"
-database_name="aps"##
-collection_name="sensor1"##table
-MongoDB_URL="mongodb+srv://shashikumarr2106:8861250561@cluster0.tw9nr0b.mongodb.net/?retryWrites=true&w=majority"
-mongo_client=pymongo.MongoClient(MongoDB_URL)
-print(mongo_client)
-df = pd.read_csv(data_file_path)
+DATA_FILE_PATH="aps_failure_training_set1.csv"
+DATABASE_NAME="aps"
+COLLECTION_NAME="sensor"
 
-print(f"Rows and Columns:{df.shape}")
 
-# convert dataframe to json format so that we can dump these records into mongo db
-df.reset_index(drop=True,inplace=True)
+if __name__=="__main__":
+    df = pd.read_csv(DATA_FILE_PATH)
+    print(f"Rows and columns: {df.shape}")
 
-json_record=list(json.loads(df.T.to_json()).values())
-#print(json_record[0])
+    #Convert dataframe to json so that we can dump these record in mongo db
+    df.reset_index(drop=True,inplace=True)
 
-# insert converted json record to mongo db
-mongo_client[database_name][collection_name].insert_many(json_record)
-print("done......")
+    json_record = list(json.loads(df.T.to_json()).values())
+    #print(json_record[0])
+
+    #insert converted json record to mongo db
+    client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)

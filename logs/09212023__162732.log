@@ -1,0 +1,3 @@
+[ 2023-09-21 16:27:37,600 ] 15 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-09-21 16:27:37,600 ] 22 root - INFO - Exporting collection data as pandas dataframe
+[ 2023-09-21 16:27:37,600 ] 22 root - INFO - Reading data from database: aps and collection: sensor
